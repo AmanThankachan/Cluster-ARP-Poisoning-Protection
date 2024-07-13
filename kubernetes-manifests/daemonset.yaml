@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: arpprotect-daemonset
+  labels:
+    app: arpprotect
+spec:
+  selector:
+    matchLabels:
+      app: arpprotect
+  template:
+    metadata:
+      labels:
+        app: arpprotect
+    spec:
+      containers:
+      - name: arpprotect
+        image: #docker-repo/arpprotect:image-tag
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: dockersock
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock

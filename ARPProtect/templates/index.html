@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ARPShield Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5">ARPShield Dashboard</h1>
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Timestamp</th>
+          <th>Real MAC</th>
+          <th>Fake MAC</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for attack in attacks %}
+        <tr>
+          <td>{{ attack.id }}</td>
+          <td>{{ attack.timestamp }}</td>
+          <td>{{ attack.real_mac }}</td>
+          <td>{{ attack.fake_mac }}</td>
+          <td>{{ attack.ip }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
